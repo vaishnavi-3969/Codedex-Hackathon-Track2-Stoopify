@@ -1,1 +1,1 @@
-# Cod-dex-Hackathon-Track2-Stoopify
+# Codedex-Hackathon-Track2-Stoopify
