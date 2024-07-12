@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import { useAuth0 } from '@auth0/auth0-react';
 import Home from './pages/Home';
 import StoopSaleDetail from './pages/StoopSaleDetail';
+import Community from './pages/Community';
 
 function App() {
   const {isAuthenticated} = useAuth0();
@@ -23,6 +24,7 @@ function App() {
     { path: '/profile', element: <Profile /> },
     { path: '*', element: <Error /> },
     { path: '/stoopSale/:id', element: <StoopSaleDetail /> },
+    { path: '/community', element: <Community /> },
   ]
   return (
     <div class="bg-[#f1f2eb] ">
