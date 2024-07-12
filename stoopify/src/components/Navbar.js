@@ -16,7 +16,13 @@ const Navbar = () => {
                 </Link>
                 <nav>
                     <Link to="/directory" className="mx-4 hover:underline">Directory</Link>
-                    <Link to="/stoop-sale-register" className="mx-4 hover:underline">Register</Link>
+                    {
+                        isAuthenticated ? (
+                            <Link to="/stoop-sale-register" className="mx-4 hover:underline">Register Sale</Link>
+                        )
+                        :
+                        null
+                    }
                 </nav>
                 <Link to="/profile">
                     <div className="flex items-center">
