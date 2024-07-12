@@ -64,6 +64,11 @@ const StoopSaleDetail = () => {
                 }
                 // toggle RSVP status
                 setIsRSVPed(!isRSVPed);
+                // Update the local state
+                const updatedRSVPs = isRSVPed
+                    ? sale.rsvps.filter(rsvp => rsvp.userEmail !== user.email)
+                    : [...sale.rsvps, { userName: user.name, userEmail: user.email, userPicture: user.picture }];
+                setSale({ ...sale, rsvps: updatedRSVPs });
             } catch (error) {
                 console.error('Error updating document: ', error);
             }
@@ -78,6 +83,7 @@ const StoopSaleDetail = () => {
             try {
                 const commentObject = {
                     userName: user.name,
+                    userEmail: user.email,
                     userPicture: user.picture,
                     commentText: newComment,
                     timestamp: new Date().toISOString()
@@ -150,14 +156,15 @@ const StoopSaleDetail = () => {
             <p className="text-gray-600">{sale.location}</p>
             <h2 className="mt-6 text-lg font-semibold">RSVPs</h2>
             <p className="text-gray-600">{sale.rsvps.length} people are attending:</p>
-            <p className="mt-2 text-gray-600">Attendees:</p>
-
             <ul className="pl-8 list-disc">
-                {sale.rsvps && sale.rsvps.map((rsvp, index) =>
-                (
+                {sale.rsvps && sale.rsvps.map((rsvp, index) => (
                     <li key={index} className="flex items-center gap-2 text-gray-600">
                         <img src={rsvp.userPicture} alt={`${rsvp.userName}'s avatar`} className="w-6 h-6 rounded-full" />
-                        <span>{rsvp.userName}</span> </li>
+                        <span>{rsvp.userName}</span>
+                        {sale.ownerEmail === rsvp.userEmail && (
+                            <span className="ml-2 text-sm text-gray-500">(Owner)</span>
+                        )}
+                    </li>
                 ))}
             </ul>
             {isAuthenticated && (
