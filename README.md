@@ -3,6 +3,9 @@
     <h1>Codedex Hackathon</h1>
     <p>Track 2: Brooklyn Stoop Sales</p>
     <img src="https://github.com/user-attachments/assets/3f947630-b41c-4314-8f76-80cf777b7c4b"/>
+    <h2>Tools and Technologies used</h2>
+     <img src="https://skillicons.dev/icons?i=github,git,react,tailwind,html,css,js,vscode,firebase,vercel"/>
+    <p>
   </div>
   <h1>Inspiration</h1>
 The inspiration for Stoopify came from the vibrant community culture of Brooklyn stoop sales. Stoop sales are not just about selling items; they're about bringing people together, fostering a sense of community, and sharing stories. I wanted to create an application that captures this spirit and makes it easy for people to organize, discover, and participate in stoop sales in their neighborhood.
