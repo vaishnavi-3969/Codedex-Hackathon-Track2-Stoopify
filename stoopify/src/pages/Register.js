@@ -23,7 +23,7 @@ const Register = () => {
         time: '',
         location: '',
         items: '',
-        coordinates: { longitude: -73.935242, latitude: 40.730610 }, // Default to New York
+        coordinates: { longitude: -73.935242, latitude: 40.730610 }, //default - ny
         rsvps: [],
         owner: user.name
     });
