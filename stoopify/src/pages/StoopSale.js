@@ -1,10 +1,13 @@
+// StoopSale.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; 
-import { getFirestore, collection, getDocs, doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { app } from '../db/Firebase';
+import Filter from '../components/Filter';
 
 const StoopSale = () => {
     const [stoopSales, setStoopSales] = useState([]);
+    const [filteredSales, setFilteredSales] = useState([]);
 
     useEffect(() => {
         const fetchStoopSales = async () => {
@@ -12,20 +15,38 @@ const StoopSale = () => {
             const stoopSalesSnapshot = await getDocs(collection(db, 'stoopSales'));
             const stoopSalesData = stoopSalesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             setStoopSales(stoopSalesData);
+            setFilteredSales(stoopSalesData);
         };
 
         fetchStoopSales();
     }, []);
 
+    const handleFilterChange = (filters) => {
+        let filtered = [...stoopSales];
+
+        if (filters.city) {
+            filtered = filtered.filter(sale => sale.location.toLowerCase().includes(filters.city.toLowerCase()));
+        }
+
+        if (filters.sortBy === 'location') {
+            filtered.sort((a, b) => a.location.localeCompare(b.location));
+        } else {
+            filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+        }
+
+        setFilteredSales(filtered);
+    };
+
     return (
-        <div className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold mb-6 text-center">Stoop Sales</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {stoopSales.map(sale => (
-                    <div key={sale.id} className="border border-gray-300 p-4 rounded-lg transition duration-300 hover:shadow-md">
+        <div className="max-w-6xl p-6 mx-auto mt-10 bg-white rounded-lg shadow-md">
+            <h1 className="mb-6 text-3xl font-bold text-center">Stoop Sales</h1>
+            <Filter onFilterChange={handleFilterChange} /> {/* Add Filter component */}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredSales.map(sale => (
+                    <div key={sale.id} className="p-6 transition duration-300 border border-gray-300 rounded-lg hover:shadow-lg">
                         <Link to={`/stoopSale/${sale.id}`}>
-                            <h2 className="text-lg font-semibold mb-2">{sale.title}</h2>
-                            <p className="text-gray-600 mb-2">{sale.description}</p>
+                            <h2 className="mb-2 text-lg font-semibold text-blue-600">{sale.title}</h2>
+                            <p className="mb-2 text-gray-600">{sale.description}</p>
                             <p className="text-gray-600">{sale.date} at {sale.time}</p>
                             <p className="text-gray-600">{sale.location}</p>
                         </Link>

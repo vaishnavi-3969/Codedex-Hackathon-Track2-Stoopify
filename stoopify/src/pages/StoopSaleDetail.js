@@ -60,7 +60,7 @@ const StoopSaleDetail = () => {
                     await updateDoc(saleRef, {
                         rsvps: arrayUnion(userObject)
                     });
-                    setShowConfetti(true); // Show confetti when RSVP is added
+                    setShowConfetti(true); 
                 }
                 // toggle RSVP status
                 setIsRSVPed(!isRSVPed);
@@ -113,7 +113,6 @@ const StoopSaleDetail = () => {
     };
 
     const handleEditPost = () => {
-        // Redirect or handle edit post functionality
         console.log('Editing post...');
     };
 
