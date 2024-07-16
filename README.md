@@ -1,7 +1,9 @@
 <div>
   <div align="center">
     <h1>Codedex Hackathon</h1>
-      <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/109048146/"/>
+      <a href="https://www.credential.net/2b011e38-da25-4a54-bff6-8c0cd6d2c5b0#gs.bq77y4">
+        <img src="https://api.accredible.com/v1/frontend/credential_website_embed_image/badge/109048146/"/>
+      </a>
     <p>Track 2: Brooklyn Stoop Sales</p>
     <img src="https://github.com/user-attachments/assets/3f947630-b41c-4314-8f76-80cf777b7c4b"/>
     <h2>Tools and Technologies used</h2>
